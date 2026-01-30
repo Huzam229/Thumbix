@@ -16,16 +16,19 @@ declare module "express-session" {
   }
 }
 
-
 await connectDB(); // define in db.js file
 // Configure Cloudinary
 connectCloudinary();
 const app = express();
 app.use(
   cors({
-    origin: ["http://localhost:5173", "http://localhost:3000"],
+    origin: [
+      "http://localhost:5173",
+      "http://localhost:3000",
+      "https://thumbix-client.vercel.app",
+    ],
     credentials: true,
-  })
+  }),
 );
 app.use(
   session({
@@ -37,15 +40,15 @@ app.use(
       mongoUrl: process.env.MONGO_URL as string,
       collectionName: "session",
     }),
-  })
+  }),
 );
 app.use(express.json());
 app.get("/", (req: Request, res: Response) => {
   res.send("Server is Live!");
 });
 app.use("/api/auth", AuthRouter);
-app.use('/api/thumbnail', ThumbnailRoutes)
-app.use('/api/user', UserRouter)
+app.use("/api/thumbnail", ThumbnailRoutes);
+app.use("/api/user", UserRouter);
 const port = process.env.PORT || "3000";
 
 app.listen(port, () => {
