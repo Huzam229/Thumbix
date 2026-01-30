@@ -32,6 +32,7 @@ export const Generate = () => {
   const [styleDropDownOpen, setStyleDropDownOpen] = useState(false);
 
   const handleGenerate = async () => {
+    // return toast.error("This is not available right now!");
     if (!isLoggedIn) return toast.error("Please login to generate thumbnails");
     if (!title.trim()) return toast.error("Please enter a title or topic");
     setLoading(true);

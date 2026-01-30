@@ -145,17 +145,13 @@ export const generateThumbnail = async (req: Request, res: Response) => {
     }
 
     const fileName = `final-output-${Date.now()}.png`;
-    const filePath = path.join("images", fileName);
+    const filePath = path.join("/tmp", fileName); // ✅ Write to /tmp
 
-    // ensure directory exists
-    fs.mkdirSync("images", { recursive: true });
-
-    // write image
     fs.writeFileSync(filePath, finalBuffer);
 
     // upload to cloudinary
     const uploadResult = await cloudinary.uploader.upload(
-      path.resolve(filePath),
+      filePath, // path.resolve not needed
       { resource_type: "image" },
     );
 
@@ -164,6 +160,7 @@ export const generateThumbnail = async (req: Request, res: Response) => {
     await thumbnail.save();
 
     res.status(200).json({ message: "Thumbnail Generated", thumbnail });
+
     fs.unlinkSync(filePath);
   } catch (error: any) {
     console.error(error);
