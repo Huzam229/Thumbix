@@ -10,6 +10,7 @@ import YTPreview from "./pages/YTPreview";
 import Login from "./components/Login";
 import { useEffect } from "react";
 import { Toaster } from "react-hot-toast";
+import Community from "./pages/Community";
 
 export default function App() {
   const { pathname } = useLocation();
@@ -30,6 +31,7 @@ export default function App() {
         <Route path="/preview" element={<YTPreview />} />
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/community" element={<Community />} />
       </Routes>
       <Footer />
     </>

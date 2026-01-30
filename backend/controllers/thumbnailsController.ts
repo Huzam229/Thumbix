@@ -181,3 +181,13 @@ export const deleteThumbnail = async (req: Request, res: Response) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+export const getAllThumbnails = async (req: Request, res: Response) => {
+  try {
+    const thumbnails = await Thumbnail.find().sort({ createdAt: -1 });
+    res.json({ thumbnails });
+  } catch (error: any) {
+    console.error(error);
+    res.status(500).json({ message: error.message });
+  }
+};

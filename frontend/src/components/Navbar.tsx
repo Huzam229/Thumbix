@@ -27,6 +27,9 @@ export default function Navbar() {
           <Link to="/generate" className="hover:text-pink-300 transition">
             Generate
           </Link>
+          <Link to="/community" className="hover:text-pink-300 transition">
+            Community
+          </Link>
           {isLoggedIn ? (
             <Link
               to="/my-generation"
@@ -39,9 +42,6 @@ export default function Navbar() {
               About
             </Link>
           )}
-          <Link to="#" className="hover:text-pink-300 transition">
-            Contact Us
-          </Link>
         </div>
 
         <div className="flex items-center gap-2">
@@ -87,6 +87,9 @@ export default function Navbar() {
         <Link onClick={() => setIsOpen(false)} to="/generate">
           Generate
         </Link>
+        <Link onClick={() => setIsOpen(false)} to="/community">
+          Community
+        </Link>
         {isLoggedIn ? (
           <Link onClick={() => setIsOpen(false)} to="/my-generations">
             My Generations
@@ -96,9 +99,6 @@ export default function Navbar() {
             About
           </Link>
         )}
-        <Link onClick={() => setIsOpen(false)} to="#">
-          Contact Us
-        </Link>
         {isLoggedIn ? (
           <button
             onClick={() => {
